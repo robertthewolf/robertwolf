@@ -1,0 +1,30 @@
+title: skills
+skills:
+    - skillset: Designer
+      tagline: 'Draw it, move it, make it fun!'
+      subskills:
+        - {prefix: 'designs', root: 'UI/UX', suffix: ''}
+        - {prefix: 'creates', root: 'Illustration', suffix: ''}
+        - {prefix: 'made', root: 'Logo Design', suffix: ''}
+        - {prefix: 'develops', root: 'Animation', suffix: ''}
+    - skillset: Developer
+      tagline: 'Fast, modern, reactive.'
+      subskills:
+        - {prefix: 'designs', root: 'React JS', suffix: ''}
+        - {prefix: 'creates', root: 'Web Animation', suffix: ''}
+        - {prefix: 'made', root: 'Advanced CSS', suffix: ''}
+        - {prefix: 'develops', root: 'iOS Apps', suffix: ''}
+    - skillset: Ideamaker
+      tagline: 'Imagine what you can plan!'
+      subskills:
+        - {prefix: 'designs', root: 'Wireframes', suffix: ''}
+        - {prefix: 'creates', root: 'Concept', suffix: ''}
+        - {prefix: 'made', root: 'Research', suffix: ''}
+        - {prefix: 'develops', root: 'Testing', suffix: ''}
+    - skillset: Soft-Skiller
+      tagline: 'Together we can do more!'
+      subskills:
+        - {prefix: 'designs', root: 'Teamwork', suffix: ''}
+        - {prefix: 'creates', root: 'Communication', suffix: ''}
+        - {prefix: 'made', root: 'Argumentation', suffix: ''}
+        - {prefix: 'develops', root: 'Languages', suffix: ''}

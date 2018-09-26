@@ -1,12 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
-    description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
+    title: 'Robert Wolf: Designer & Developer',
+    author: 'Robert Wolf',
+    description: 'Sharp Design, Blazing fast website. Robert Wolf is a Multimedia Designer looking for intership in spring 2019.',
+    siteUrl: 'https://robertwolf.cz/',
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
+    `gatsby-plugin-layout`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -1,13 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
-import Bio from '../components/Bio'
-import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 
-class BlogIndex extends React.Component {
+export default class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteDescription = get(
@@ -17,59 +16,38 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <Layout location={this.props.location}>
+      <div>
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={siteTitle}
         />
-        <Bio />
-        {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
-      </Layout>
+        <Container>
+          <Line />
+        </Container>
+      </div>
     )
   }
 }
 
-export default BlogIndex
 
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "DD MMMM, YYYY")
-            title
-          }
-        }
-      }
-    }
-  }
+const Container = styled.div`
+width: 100vw;
+height: 3px;
+position: relative;
+`
+
+const Line = styled.div`
+background: linear-gradient(90deg, #ffffff, #fd9a28, #5c051e, #fd6efc);
+animation: shine 5s ease-in-out alternate infinite;
+background-size: 800% 800%;
+width: 100%;
+height: 100%;
+
+
+@keyframes shine { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 `
