@@ -169,6 +169,7 @@ const BackButton = styled.button`
 position: fixed;
 left: 0;
 bottom: 0;
+z-index: 50;
 
 width: 100%;
 padding: ${rhythm(1.5)} ${rhythm(0.25)} ${rhythm(0.5)};
