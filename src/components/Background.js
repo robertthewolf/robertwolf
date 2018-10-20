@@ -4,6 +4,8 @@ import Link from 'gatsby-link'
 
 import { rhythm, scale } from '../utils/typography'
 
+import HireMe from './HireMe'
+
 export default () => {
   return (
     <Background>
@@ -57,6 +59,7 @@ export default () => {
           projects. I’ve learned how to lead a team through the UX design
           process and agile development method.
         </Description>
+        <HireMe className="hireMe" color="black" />
       </Card>
     </Background>
   )
@@ -71,7 +74,7 @@ const Background = styled.article`
 
 const Card = styled.section`
   width: calc(100% - 4rem);
-  margin-top: ${rhythm(1)};
+  margin: ${rhythm(1)} 0;
   padding: ${rhythm(0.75)};
   position: relative;
 
@@ -117,11 +120,19 @@ const Card = styled.section`
 
     &.internship {
       align-self: center;
+      margin-top: ${rhythm(2)};
 
       time {
         top: -3rem;
         left: ${rhythm(0.75)};
         color: white;
+      }
+
+      a {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: ${rhythm(0.75)};
       }
     }
   }

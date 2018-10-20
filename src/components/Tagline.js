@@ -41,5 +41,5 @@ const Tagline = styled.h1`
   font-size: ${rhythm(1.5)};
   line-height: 1em;
   font-weight: bold;
-  max-width: 10em;
+  max-width: 7em;
 `

@@ -6,8 +6,8 @@ import { rhythm, scale } from '../utils/typography'
 export default props => {
   return (
     <Link
-      to="#"
-      onClick={() => window.history.back()}
+      to={props.link}
+      // onClick={() => window.history.back()}
       css={{
         display: 'block',
         margin: rhythm(0.5),
@@ -15,7 +15,7 @@ export default props => {
 
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        fontSize: rhythm(0.6),
+        fontSize: rhythm(0.66),
         lineHeight: '1rem',
       }}
     >

@@ -41,7 +41,7 @@ const Text = styled.p`
 const parallaxContact = [
   {
     start: 0,
-    end: 100,
+    end: 50,
     properties: [
       {
         startValue: 1,

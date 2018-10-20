@@ -17,7 +17,7 @@ export default props => (
     <div
       style={{
         textTransform: 'uppercase',
-        fontSize: rhythm(0.6),
+        fontSize: rhythm(0.66),
         lineHeight: '1rem',
         marginRight: rhythm(0.33),
       }}

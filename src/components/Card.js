@@ -8,7 +8,7 @@ import { rhythm, scale } from '../utils/typography'
 export default props => {
   return (
     <Card className={props.fullwidth ? 'fullwidth' : 'rounded'}>
-      {props.cover.localFile !== null && (
+      {props.cover.localFile.childImageSharp !== null && (
         <Overdrive
           id={props.id + 'image'}
           css={{
@@ -26,8 +26,12 @@ export default props => {
           />
         </Overdrive>
       )}
-      {props.cover.localFile === null && (
-        <Overdrive id={props.id + 'image'}>
+      {props.cover.localFile.childImageSharp === null && (
+        <Overdrive id={props.id + 'image'} 
+        css={{
+          width: '100%',
+          height: '100%',
+        }}>
           <img src={props.cover.url} alt={props.cover.alt} />
         </Overdrive>
       )}
@@ -45,6 +49,8 @@ const Card = styled.section`
   &.rounded {
     margin: ${rhythm(1)};
     border-radius: 0.5rem;
+
+  
   }
   overflow: hidden;
   height: ${rhythm(12)};
@@ -68,4 +74,5 @@ const Title = styled.h2`
   left: ${rhythm(1)};
   bottom: 0;
   color: white;
+  max-width: 10em;
 `

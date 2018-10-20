@@ -44,7 +44,7 @@ export default class PostTemplate extends React.Component {
             display: 'flex',
           }}
         >
-          <BackButton />
+          <BackButton link="/" />
           {this.props.data.allPrismicCategory.edges
             .filter(edge => edge.node.id === category.id)
             .map(edge => {

@@ -45,7 +45,7 @@ export default class PostTemplate extends React.Component {
             </Animation>
           </Whitebox>
         </Animation>
-        <BackButton bottom>back</BackButton>
+        <BackButton link={"/" + post.data.category.slug}>back</BackButton>
       </div>
     )
   }
@@ -62,6 +62,7 @@ export const pageQuery = graphql`
         }
         category {
           id
+          slug
         }
         client
         story {
