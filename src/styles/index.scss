@@ -1,0 +1,23 @@
+body {
+    background: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+button {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+
+// parallax
+
+.parallaxBackground.Plx--above {
+    opacity: 0;
+}

@@ -7,53 +7,7 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
-    `gatsby-plugin-layout`,
-    `gatsby-plugin-styled-components`,
-    `gatsby-transformer-yaml`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/data/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-        ],
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
-    `gatsby-plugin-feed`,
+    //header info
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -63,10 +17,9 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/gatsby-icon.png`,
+        // icon: `src/assets/gatsby-icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-typography',
@@ -74,5 +27,38 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    
+
+    //source: prismic.io
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "robertwolf",
+        accessToken: "MC5XN3Z5T0JJQUFDZ0FVdGdw.77-9cgEH77-977-9ZO-_vUU1XXRg77-9He-_ve-_vVoP77-977-9Wu-_vQlm77-977-977-977-977-977-977-9",
+        linkResolver: ({ node, key, value }) => doc => `/${doc.uid}`,
+        htmlSerializer: ({ node, key, value }) => (
+          (type, element, content, children) => {
+            // Your HTML serializer
+          }
+        )
+      }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
+
+    //styling: emotion
+    `gatsby-plugin-emotion`,
+
+    //utilities
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-sass`
+
   ],
 }

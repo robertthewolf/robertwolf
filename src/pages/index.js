@@ -1,53 +1,82 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'react-emotion'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 
+import Plx from 'react-plx'
+
 import { rhythm } from '../utils/typography'
+
+//components
+import Tagline from '../components/Tagline'
+import Contact from '../components/Contact'
+import Skills from '../components/Skills'
+import Background from '../components/Background'
 
 export default class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const siteDescription = get(
-      this,
-      'props.data.site.siteMetadata.description'
-    )
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
-
     return (
       <div>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          meta={[{ name: 'description', content: siteDescription }]}
-          title={siteTitle}
-        />
-        <Container>
-          <Line />
-        </Container>
+        <Contact />
+
+        <Tagline>
+          Hi! I've got
+          <br /> something
+          <br /> for you
+        </Tagline>
+        <Skills />
+        <Plx parallaxData={parallaxButton}>
+        <BackgroundButton>Background</BackgroundButton>
+        </Plx>
+
+        <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
+          <Background />
+        </Plx>
       </div>
     )
   }
 }
 
-
-const Container = styled.div`
-width: 100%;
-height: 3px;
-position: relative;
+const BackgroundButton = styled.button`
+  position: absolute;
+  left: 50%;
+  bottom: ${rhythm(1)};
+  transform: translateX(-50%);
+  text-align: center;
+  text-transform: uppercase;
 `
 
-const Line = styled.div`
-background: linear-gradient(90deg, #ffffff, #fd9a28, #5c051e, #fd6efc);
-animation: shine 5s ease-in-out alternate infinite;
-background-size: 800% 800%;
-width: 100%;
-height: 100%;
 
+const parallaxButton = [
+  {
+    start: 0,
+    end: 200,
+    properties: [
+      {
+        startValue: 1,
+        endValue: 0,
+        property: 'opacity',
+      },
+    ],
+  },
+]
 
-@keyframes shine { 
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-`
+const parallaxBackground = [
+  {
+    start: 50,
+    end: 500,
+    properties: [
+      {
+        startValue: 0,
+        endValue: 1,
+        property: 'opacity',
+      },
+      {
+        startValue: -50,
+        endValue: 0,
+        property: 'translateY',
+      },
+    ],
+  },
+]

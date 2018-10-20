@@ -1,23 +1,28 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'react-emotion'
 import { StaticQuery, Link, graphql } from 'gatsby'
+import { Spring } from 'react-spring'
+import Overdrive from 'react-overdrive'
 
 import { rhythm } from '../utils/typography'
-
-//context
-import { NavigationContext } from '../layouts/index.js'
 
 export default props => (
   <StaticQuery
     query={graphql`
       query {
-        dataYaml(title: { eq: "skills" }) {
-          skills {
-            skillset
-            subskills {
-              prefix
-              root
-              suffix
+        allPrismicCategory {
+          edges {
+            node {
+              prismicId
+              slugs
+              data {
+                name {
+                  text
+                }
+                icon {
+                  url
+                }
+              }
             }
           }
         }
@@ -25,161 +30,91 @@ export default props => (
     `}
     render={data => {
       return (
-        <NavigationContext.Consumer>
-          {({ focus, toggleFocus }) => (
-            <Container className={focus != 'back' ? 'active' : 'inactive'}>
-              {data.dataYaml.skills.map(skillset => (
-                <Skillset key={skillset.skillset} className={focus === skillset.skillset ? 'active' : 'inactive'}>
-                  <h3 onClick={toggleFocus}>{skillset.skillset}</h3>
-                  <ul>
-                    {skillset.subskills.map(skill => (
-                      <Subskill key={skill.root}>{skill.root}</Subskill>
-                    ))}
-                  </ul>
-                </Skillset>
-              ))}
-              {focus != 'back' &&
-              <BackButton onClick={toggleFocus}>back</BackButton>
-                }
-            </Container>
-          )}
-        </NavigationContext.Consumer>
+        <Container>
+          {data.allPrismicCategory.edges.map(edge => (
+            <Tile key={edge.node.prismicId}>
+              <Link to={`/${edge.node.slugs[0]}`}>
+                <img src={edge.node.data.icon.url} />
+                <span>{edge.node.data.name.text}</span>
+              </Link>
+            </Tile>
+          ))}
+        </Container>
       )
     }}
   />
 )
 
 const Container = styled.section`
+position: relative;
+z-index: 10;
   display: flex;
   flex-wrap: wrap;
-
-
-&.active .inactive {
-
-    display: none;
-
-}
-`
-
-const Skillset = styled.section`
-  h3 {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-  }
-
-  @media screen and (max-width: 500px) {
-      
-
-    &.inactive {
-        width: 50%;
-
-        ul {
-            display: none;
-        }
-    }
-
-    &.active h3, &.active + div hr {
-        display: none;
-    }
-
-    h3 {
-      text-transform: none;
-      max-width: ${rhythm(7)};
-      padding: ${rhythm(0.6)};
-      margin: ${rhythm(0.25)};
-      border-radius: ${rhythm(0.25)};
-
-      box-shadow: inset 0 0 ${rhythm(0.5)} rgba(0, 0, 0, 0.2);
-
-      font-weight: 600;
-      list-style: none;
-      text-align: center;
-      font-size: ${rhythm(0.6)};
-      line-height: ${rhythm(0.6)}; 
-      cursor: pointer;
-    }
-
-    &:nth-of-type(1) h3 {
-      background: rgba(255, 255, 255, 0.24);
-    }
-
-    &:nth-of-type(2) h3 {
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    &:nth-of-type(3) h3 {
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    &:nth-of-type(4) h3 {
-      background: rgba(255, 255, 255, 0.06);
-    }
+  margin: ${rhythm(0.5)};
+  
+  @media screen and (min-width: 600px) {
+    flex-wrap: nowrap;
   }
 `
 
-const Subskill = styled.li`
-
-@media screen and (max-width: 500px) {
-  width: calc(50% - ${rhythm(0.5)});
-}
-
-
-  text-transform: none;
-  max-width: ${rhythm(7)};
-  padding: ${rhythm(0.6)};
-  margin: ${rhythm(0.25)};
-  border-radius: ${rhythm(0.25)};
-
+const Tile = styled.section`
   box-shadow: inset 0 0 ${rhythm(0.5)} rgba(0, 0, 0, 0.2);
-
-  font-weight: 600;
-  list-style: none;
-  text-align: center;
-  font-size: ${rhythm(0.6)};
-  line-height: ${rhythm(0.6)};
-  white-space: nowrap;
   cursor: pointer;
+  width: calc(50% - ${rhythm(0.5)});
+  margin: ${rhythm(0.25)};
+  border-radius: ${rhythm(0.33)};
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    padding: ${rhythm(0.75)} ${rhythm(0.5)};
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    display: block;
+  }
+
+  span {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    line-height: 1em;
+    margin: auto 0 0;
+  }
 
   &:nth-of-type(1) {
-    background: rgba(255, 255, 255, 0.24);
+    background: #4A4A4A;
   }
 
   &:nth-of-type(2) {
-    background: rgba(255, 255, 255, 0.18);
+    background: #3b3B2B;
   }
 
   &:nth-of-type(3) {
-    background: rgba(255, 255, 255, 0.12);
+    background: #2c2c2c;
   }
 
   &:nth-of-type(4) {
-    background: rgba(255, 255, 255, 0.06);
+    background: #1D1D1D;
   }
-`
 
-
-const BackButton = styled.button`
-position: fixed;
-left: 0;
-bottom: 0;
-z-index: 50;
-
-width: 100%;
-padding: ${rhythm(1.5)} ${rhythm(0.25)} ${rhythm(0.5)};
-border: 0;
-outline: none;
-cursor: pointer;
-
-background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.8) 50%, rgba(0,0,0,1) 100%);
-
-color: white;
-text-transform: uppercase;
-font-weight: 600;
 `
