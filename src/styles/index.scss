@@ -1,6 +1,10 @@
 body {
     background: black;
     color: white;
+
+    @media screen and (min-width: 600px) {
+        padding-top: 5vh;
+    }
 }
 
 a {

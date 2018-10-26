@@ -25,12 +25,16 @@ export default props => (
       next
     </div>
     <div
-      style={{
-        fontWeight: 'bold',
-        backgroundColor: '#4A4A4A',
-        borderRadius: `${rhythm(0.33)} 0 0 ${rhythm(0.33)}`,
-        padding: rhythm(0.5),
-      }}
+      css={`
+        font-weight: bold;
+        background-color: #4A4A4A;
+        border-radius: ${rhythm(0.33)} 0 0 ${rhythm(0.33)};
+        padding: ${rhythm(0.5)};
+
+        @media screen and (min-width: 600px) {
+          border-radius:  ${rhythm(0.33)};
+        }
+      `}
     >
       {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
     </div>

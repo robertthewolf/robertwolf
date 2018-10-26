@@ -50,6 +50,7 @@ position: relative;
 z-index: 10;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: ${rhythm(0.5)};
   
   @media screen and (min-width: 600px) {
@@ -61,6 +62,7 @@ const Tile = styled.section`
   box-shadow: inset 0 0 ${rhythm(0.5)} rgba(0, 0, 0, 0.2);
   cursor: pointer;
   width: calc(50% - ${rhythm(0.5)});
+  max-width: 250px;
   margin: ${rhythm(0.25)};
   border-radius: ${rhythm(0.33)};
   position: relative;
@@ -115,6 +117,11 @@ const Tile = styled.section`
 
   &:nth-of-type(4) {
     background: #1D1D1D;
+  }
+
+
+  @media screen and (min-width: 600px) {
+    margin: ${rhythm(0.5)};
   }
 
 `

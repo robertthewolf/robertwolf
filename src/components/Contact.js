@@ -8,7 +8,15 @@ import { rhythm } from '../utils/typography'
 class Contact extends React.Component {
   render() {
     return (
-      <Plx parallaxData={parallaxContact}>
+      <Plx parallaxData={parallaxContact} css={`
+
+        @media screen and (min-width: 600px) {
+          float: right;
+          margin-top: ${rhythm(1)};
+          margin-right: 15vw;
+          text-align: right;
+        }
+      `}>
         <Text>
           Robert Wolf
           <br />

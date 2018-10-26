@@ -56,9 +56,11 @@ module.exports = {
     //styling: emotion
     `gatsby-plugin-emotion`,
 
+    // transition
+    'gatsby-plugin-page-transitions',
+
     //utilities
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`
-
   ],
 }

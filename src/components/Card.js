@@ -22,17 +22,28 @@ export default props => {
             css={{
               width: '100%',
               height: '100%',
+              objectFit: 'cover',
             }}
           />
         </Overdrive>
       )}
       {props.cover.localFile.childImageSharp === null && (
-        <Overdrive id={props.id + 'image'} 
-        css={{
-          width: '100%',
-          height: '100%',
-        }}>
-          <img src={props.cover.url} alt={props.cover.alt} />
+        <Overdrive
+          id={props.id + 'image'}
+          css={{
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <img
+            src={props.cover.url}
+            alt={props.cover.alt}
+            css={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
         </Overdrive>
       )}
       <Overdrive id={props.id + 'gradient'}>
@@ -50,11 +61,17 @@ const Card = styled.section`
     margin: ${rhythm(1)};
     border-radius: 0.5rem;
 
-  
+    img {
+      border-radius: 0.5rem;
+    }
   }
   overflow: hidden;
   height: ${rhythm(12)};
   position: relative;
+
+  @media screen and (min-width: 600px) {
+    width: 40vw;
+  }
 `
 
 const Gradient = styled.div`

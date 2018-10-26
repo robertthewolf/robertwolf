@@ -50,26 +50,51 @@ export default () => {
         </Description>
       </Card>
 
-      <Card className="internship card">
-        <Time>FEB2019</Time>
-        <Heading>UX/UI Intern</Heading>
-        <Company>@Your Amazing Company</Company>
-        <Description>
-          Over two semesters year, I have completed 7 teamwork and 2 individual
-          projects. I’ve learned how to lead a team through the UX design
-          process and agile development method.
-        </Description>
-        <HireMe className="hireMe" color="black" />
-      </Card>
+      <div
+        css={`
+        background: linear-gradient(30deg, #FDA629 0%, #FD66F1 51.38%, #4B0C49 100%);
+        border-radius: ${rhythm(0.46)};
+        padding: 4px;
+        margin: auto;
+
+        @media screen and (max-width: ${breakpointRow}px) {
+          width: calc(100% - 4rem);
+          margin: ${rhythm(1)} auto;
+        }
+      `}
+      >
+        <Card className="internship card">
+          <Time>FEB2019</Time>
+          <Heading>UX/UI Intern</Heading>
+          <Company>@Your Amazing Company</Company>
+          <Description>
+            Over two semesters year, I have completed 7 teamwork and 2
+            individual projects. I’ve learned how to lead a team through the UX
+            design process and agile development method.
+          </Description>
+          <HireMe className="hireMe" color="black" />
+        </Card>
+      </div>
     </Background>
   )
 }
 
+const breakpointRow = 600
+
+const borderRadius = rhythm(0.33)
+
 const Background = styled.article`
-  padding-top: ${rhythm(2)};
+  margin-top: ${rhythm(7)};
 
   display: flex;
   flex-flow: column nowrap;
+
+  @media screen and (min-width: ${breakpointRow}px) {
+    flex-flow: column-reverse wrap;
+    height: 100vh;
+    min-height: 600px;
+    padding: ${rhythm(2)};
+  }
 `
 
 const Card = styled.section`
@@ -88,17 +113,16 @@ const Card = styled.section`
   }
 
   &.internship {
-    // background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 329 98' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='4' width='321' height='90' rx='5' fill='white'/%3E%3Crect x='2' y='2' width='325' height='94' rx='7' stroke='url(%23paint0_linear)' stroke-opacity='0.7' stroke-width='4'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='325' y1='103.5' x2='295.287' y2='-44.153' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FDA629'/%3E%3Cstop offset='0.513812' stop-color='%23FD66F1'/%3E%3Cstop offset='1' stop-color='%234B0C49'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
-    background-color: white;
+    background: white;
     color: black;
-    border-radius: 0.5rem;
-    background-size: 100% 100%;
-    padding: calc(${rhythm(0.75)} + 4px);
+    margin: 0;
+    width: 100%;
+    border-radius: ${borderRadius};
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: ${breakpointRow}px) {
     &.education {
-      border-radius: 0 0.5rem 0.5rem 0;
+      border-radius: 0 ${borderRadius} ${borderRadius} 0;
 
       time {
         right: -4rem;
@@ -107,7 +131,7 @@ const Card = styled.section`
     }
 
     &.experience {
-      border-radius: 0.5rem 0 0 0.5rem;
+      border-radius: ${borderRadius} 0 0 ${borderRadius};
       align-self: flex-end;
 
       time {
@@ -120,7 +144,6 @@ const Card = styled.section`
 
     &.internship {
       align-self: center;
-      margin-top: ${rhythm(2)};
 
       time {
         top: -3rem;
@@ -136,6 +159,19 @@ const Card = styled.section`
       }
     }
   }
+
+  @media screen and (min-width: ${breakpointRow}px) {
+    min-height: calc(50vh - ${rhythm(4)});
+    width: 25vw;
+    border-radius: ${borderRadius};
+
+    &.education {
+      margin-left: 5vw;
+    }
+
+    &.internship {
+    }
+  }
 `
 
 const Time = styled.time`
@@ -144,6 +180,13 @@ const Time = styled.time`
   right: 0;
   font-weight: 200;
   margin: ${rhythm(0.75)} 0.5rem;
+
+  @media screen and (min-width: ${breakpointRow}px) {
+    top: -${rhythm(2)};
+    left: ${rhythm(0.5)};
+    color: white;
+    opacity: 0.7;
+  }
 `
 
 const Heading = styled.h4`
@@ -154,10 +197,13 @@ const Heading = styled.h4`
 const Company = styled.p`
   font-size: 0.875rem;
   margin: 0;
+  font-weight: 200;
 `
 
 const Description = styled.p`
   @media screen and (max-width: 600px) {
     display: none;
   }
+
+  margin-top ${rhythm(1)};
 `

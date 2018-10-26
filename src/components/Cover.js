@@ -20,18 +20,27 @@ export default props => (
     ]}
   >
     <div
-      style={{
-        width: '75vw',
-        height: rhythm(8),
-        marginTop: `-${rhythm(4)}`,
-        marginBottom: `-${rhythm(2)}`,
-        marginLeft: 'auto',
-        backgroundColor: '#434343',
-        backgroundImage: `url('${props.src}')`,
-        backgroundSize: props.size ? props.size : 'cover',
-        backgroundPosition: props.position ? props.position : 'center center',
-        backgroundRepeat: 'no-repeat',
-      }}
+
+      css={`
+      width: 75vw;
+      height: ${rhythm(8)};
+      margin-top: -${rhythm(4)};
+      margin-bottom: -${rhythm(2)};
+      margin-left: auto;
+
+      background-image: url('${props.image ? props.image : ''}');
+      background-color: ${props.color ? props.color : ''};
+      background-position: ${props.position ? props.position : 'center center'};
+      background-size: ${props.size ? props.size : ''};
+      background-repeat: no-repeat;
+
+      @media screen and (min-width: 600px) {
+        width: 40vw;
+        margin-right: 45vw;
+        margin-top: -${rhythm(6)}; 
+        height: ${rhythm(12)};
+      }
+      `}
     />
   </Plx>
 )

@@ -26,20 +26,27 @@ export default props => (
         ],
       },
     ]}
-    style={{
-      position: 'relative',
-      zIndex: 1
-    }}
+    css={`
+      position: relative;
+      z-index: 1;
+
+    `}
   >
-    <Tagline>{props.children}</Tagline>
+    <h1
+      css={`
+        margin-left: ${rhythm(1)};
+        padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
+        font-size: ${rhythm(1.5)};
+        line-height: 1em;
+        font-weight: bold;
+        max-width: 7em;
+
+        @media screen and (min-width: 600px) {
+          margin-left: calc(15vw - ${rhythm(1.66)});
+        }
+      `}
+    >
+      {props.children}
+    </h1>
   </Plx>
 )
-
-const Tagline = styled.h1`
-  margin-left: ${rhythm(1)};
-  padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
-  font-size: ${rhythm(1.5)};
-  line-height: 1em;
-  font-weight: bold;
-  max-width: 7em;
-`
