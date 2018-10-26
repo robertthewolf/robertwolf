@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'react-emotion'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import PageTransition from 'gatsby-plugin-page-transitions'
 import Overdrive from 'react-overdrive'
 
 import Plx from 'react-plx'
@@ -21,55 +20,47 @@ import coverImage from '../img/video_cover.png'
 
 export default class BlogIndex extends React.Component {
   state = {
+    isOpen: false,
     isVideoOpen: false,
+  }
+  componentDidMount() {
+    this.setState({ isOpen: !this.state.isOpen })
   }
 
   openVideo = () => {
-    this.setState({isVideoOpen: true})
+    this.setState({ isVideoOpen: true })
   }
 
   render() {
-    console.log(this.state.isVideoOpen);
+    console.log(this.state.isVideoOpen)
     return (
-      <PageTransition
-      defaultStyle={{
-        transition: 'all 100ms ease-out',
-        opacity: '0',
-        transform: 'translateX(-100%)'
-      }}
-      transitionStyles={{
-        entering: { opacity: '1',
-        transform: 'translateX(0)' },
-        entered: { opacity: '1',
-        transform: 'translateX(0)' },
-        exiting: { opacity: '0',
-        transform: 'translateX(-100%)' },
-      }}
-      transitionTime={100}
-      >
-      <div>
-        <Contact />
-        {!this.state.isVideoOpen &&
-        <Tagline>
-          Hi! I've got
-          <br /> something
-          <br /> for you <button onClick={this.openVideo}>▶</button>
-        </Tagline>
-        }
-       
+        <div>
+          <Contact />
+          {!this.state.isVideoOpen && (
+            <Tagline>
+              Hi! I've got
+              <br /> something
+              <br /> for you <button onClick={this.openVideo}>▶</button>
+            </Tagline>
+          )}
 
-      {!this.state.isVideoOpen && <Overdrive id="video"><Cover color="#FFD368" image={coverImage} size="contain"/></Overdrive>}
-      {this.state.isVideoOpen && <Video/>}
-        <Skills />
-        <Plx parallaxData={parallaxButton}>
-        <BackgroundButton><span>Background</span></BackgroundButton>
-        </Plx>
+          {!this.state.isVideoOpen && (
+            <Overdrive id="video">
+              <Cover color="#FFD368" image={coverImage} size="contain" />
+            </Overdrive>
+          )}
+          {this.state.isVideoOpen && <Video />}
+          <Skills isOpen={this.state.isOpen} />
+          <Plx parallaxData={parallaxButton}>
+            <BackgroundButton>
+              <span>Background</span>
+            </BackgroundButton>
+          </Plx>
 
-        <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
-          <Background />
-        </Plx>
+          <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
+            <Background />
+          </Plx>
         </div>
-  </PageTransition>
     )
   }
 }
@@ -92,7 +83,6 @@ const BackgroundButton = styled.button`
     top: calc(100vh - ${rhythm(4)});
   }
 `
-
 
 const parallaxButton = [
   {

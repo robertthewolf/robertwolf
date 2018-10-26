@@ -11,7 +11,7 @@ export default props => (
     parallaxData={[
       {
         start: 0,
-        end: 500,
+        end: 100,
         properties: [
           {
             startValue: 1,
@@ -20,7 +20,7 @@ export default props => (
           },
           {
             startValue: 0,
-            endValue: 100,
+            endValue: 50,
             property: 'translateY',
           },
         ],

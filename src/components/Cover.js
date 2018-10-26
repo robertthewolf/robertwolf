@@ -8,12 +8,17 @@ export default props => (
     parallaxData={[
       {
         start: 0,
-        end: 100,
+        end: 300,
         properties: [
           {
             startValue: .5,
             endValue: 0,
             property: 'opacity',
+          },
+          {
+            startValue: 0,
+            endValue: 150,
+            property: 'translateY',
           },
         ],
       },

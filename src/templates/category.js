@@ -3,7 +3,21 @@ import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import styled from 'react-emotion'
 import { rhythm, scale } from '../utils/typography'
-import { Trail, config } from 'react-spring'
+import posed from 'react-pose'
+
+const Parent = posed.div({
+  open: {
+    x: '0%',
+    delayChildren: 120,
+    staggerChildren: 150,
+  },
+  closed: { x: '-100%', delay: 0 },
+})
+
+const Child = posed.div({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 },
+})
 
 import BackButton from '../components/BackButton'
 import Contact from '../components/Contact'
@@ -12,9 +26,13 @@ import Tagline from '../components/Tagline'
 import Card from '../components/Card'
 import Next from '../components/Next'
 
-import DragScroll from 'react-dragscroll'
-
 export default class PostTemplate extends React.Component {
+  state = { isOpen: false }
+
+  componentDidMount() {
+    this.setState({ isOpen: !this.state.isOpen })
+  }
+
   render() {
     const category = this.props.data.prismicCategory
 
@@ -26,8 +44,9 @@ export default class PostTemplate extends React.Component {
       <div>
         <Contact />
         <Tagline>{category.data.tagline.text}</Tagline>
-        <Cover src={category.data.icon.url} size="50% 50%" />
-        <DragScroll
+        <Cover image={category.data.icon.url} size="50% 50%" />
+        <Parent
+          pose={this.state.isOpen ? 'open' : 'closed'}
           css={`
             @media screen and (min-width: 600px) {
               display: flex;
@@ -35,37 +54,27 @@ export default class PostTemplate extends React.Component {
             }
           `}
         >
-          <Trail
-            from={{ transform: 'scaleY(0.5)' }}
-            to={{ transform: 'scaleY(1)' }}
-            keys={posts.map(post => post.node.id)}
-            config={{mass: 1000, tension: 200, friction: 50, delay: 50}}
-          >
-            {posts.map(post => styles => (
-              <div style={styles}>
-                <Link
-                  to={`/${category.slugs[0]}/${post.node.slugs[0]}`}
-                  key={post.node.id}
-                >
-                  <Card
-                    cover={post.node.data.cover}
-                    color={post.node.data.color}
-                    title={post.node.data.title.text}
-                    id={post.node.slugs[0]}
-                  />
-                </Link>
-              </div>
-            ))}
-          </Trail>
-        </DragScroll>
+          {posts.map(post => (
+            <Child key={post.node.id}>
+              <Link to={`/${category.slugs[0]}/${post.node.slugs[0]}`}>
+                <Card
+                  cover={post.node.data.cover}
+                  color={post.node.data.color}
+                  title={post.node.data.title.text}
+                  id={post.node.slugs[0]}
+                />
+              </Link>
+            </Child>
+          ))}
+        </Parent>
 
         <div
           css={`
-          display: flex;
-          @media screen and (min-width: 600px) {
-            width: 80vw;
-            margin: 0 auto;
-          }
+            display: flex;
+            @media screen and (min-width: 600px) {
+              width: 80vw;
+              margin: 0 auto;
+            }
           `}
         >
           <BackButton link="/" />
