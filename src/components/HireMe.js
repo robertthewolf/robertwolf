@@ -9,6 +9,7 @@ export default props => {
         <Link to="" style={{
             padding: rhythm(.5),
             border: `2px solid ${color}`,
+            
             borderRadius: rhythm(.33),
             display: 'inline-block',
             color: color,

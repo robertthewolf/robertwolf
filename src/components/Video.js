@@ -1,25 +1,45 @@
 import React from 'react'
-import Overdrive from 'react-overdrive'
+import VideoCover from 'react-video-cover'
 
-export default () => {
-  return (
-    <div>
-        <Overdrive id="video">
-      <video
-        autoPlay={true}
-        css={{
-          width: '100%',
-        }}
-        ref={video => this.fullName = video}
+import { rhythm } from '../utils/typography'
+
+export default class Video extends React.Component {
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open === true) {
+      this.videoRef.play()
+    }
+} 
+
+
+  render() {
+    return (
+      <div
+        css={`
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        `}
       >
-        <source
-          src="https://res.cloudinary.com/duee6zdk4/video/upload/vc_h264/v1540169467/robertwolf.mp4"
-          type="video/mp4"
+        <VideoCover
+          videoOptions={{
+            src:
+              'http://res.cloudinary.com/duee6zdk4/video/upload/robertwolf.mp4',
+            ref: videoRef => {
+              this.videoRef = videoRef
+            },
+            onClick: () => {
+              if (this.videoRef && this.videoRef.paused) {
+                this.videoRef.play()
+              } else if (this.videoRef) {
+                this.videoRef.pause()
+              }
+            },
+            onTimeUpdate: this.props.timeUpdate,
+            title: 'play/pause',
+          }}
         />
-        {/* <source src="movie.ogg" type="video/ogg" /> */}
-        Your browser does not support the video tag.
-      </video>
-      </Overdrive>
-    </div>
-  )
+      </div>
+    )
+  }
 }

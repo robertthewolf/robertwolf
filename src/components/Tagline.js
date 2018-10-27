@@ -40,6 +40,7 @@ export default props => (
         line-height: 1em;
         font-weight: bold;
         max-width: 7em;
+        overflow-wrap: normal;
 
         @media screen and (min-width: 600px) {
           margin-left: calc(15vw - ${rhythm(1.66)});

@@ -16,12 +16,15 @@ import Background from '../components/Background'
 import Cover from '../components/Cover'
 import Video from '../components/Video'
 
+import subtitles from '../components/Subtitles'
+
 import coverImage from '../img/video_cover.png'
 
 export default class BlogIndex extends React.Component {
   state = {
     isOpen: false,
     isVideoOpen: false,
+    videoTime: 0,
   }
   componentDidMount() {
     this.setState({ isOpen: !this.state.isOpen })
@@ -31,36 +34,49 @@ export default class BlogIndex extends React.Component {
     this.setState({ isVideoOpen: true })
   }
 
+  handleTimeUpdate = e => {
+    const time = Math.floor(e.target.currentTime * 10) / 10
+    this.setState({ videoTime: time })
+
+    if (e.target.duration - time < 1) {
+      this.setState({ isVideoOpen: false })
+    }
+  }
+
   render() {
-    console.log(this.state.isVideoOpen)
     return (
-        <div>
-          <Contact />
-          {!this.state.isVideoOpen && (
-            <Tagline>
-              Hi! I've got
-              <br /> something
-              <br /> for you <button onClick={this.openVideo}>▶</button>
-            </Tagline>
-          )}
+      <div>
+        <Contact />
+        {!this.state.isVideoOpen && this.state.videoTime === 0 && (
+          <Tagline>
+            Hi! I've got
+            <br /> something
+            <br /> for you <button onClick={this.openVideo}>▶</button>
+          </Tagline>
+        )}
+        {this.state.videoTime !== 0 && 
+          <Tagline>
+            {subtitles(this.state.videoTime)}
+          </Tagline>
+        }
+        <Cover open={this.state.isVideoOpen}>
+          <Video
+            open={this.state.isVideoOpen}
+            timeUpdate={this.handleTimeUpdate}
+          />
+        </Cover>
 
-          {!this.state.isVideoOpen && (
-            <Overdrive id="video">
-              <Cover color="#FFD368" image={coverImage} size="contain" />
-            </Overdrive>
-          )}
-          {this.state.isVideoOpen && <Video />}
-          <Skills isOpen={this.state.isOpen} />
-          <Plx parallaxData={parallaxButton}>
-            <BackgroundButton>
-              <span>Background</span>
-            </BackgroundButton>
-          </Plx>
+        <Skills isOpen={this.state.isOpen} />
+        <Plx parallaxData={parallaxButton}>
+          <BackgroundButton>
+            <span>Background</span>
+          </BackgroundButton>
+        </Plx>
 
-          <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
-            <Background />
-          </Plx>
-        </div>
+        <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
+          <Background />
+        </Plx>
+      </div>
     )
   }
 }
@@ -78,9 +94,7 @@ const BackgroundButton = styled.button`
   }
 
   @media screen and (min-width: 600px) {
-    position: fixed;
-    left: 0;
-    top: calc(100vh - ${rhythm(4)});
+    margin-top: ${rhythm(2)};
   }
 `
 

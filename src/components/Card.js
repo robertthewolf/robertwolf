@@ -71,6 +71,13 @@ const Card = styled.section`
 
   @media screen and (min-width: 600px) {
     width: 40vw;
+    height: ${rhythm(14)};
+
+    &.fullwidth {
+      margin: ${rhythm(2)} auto 0;
+      border-radius: ${rhythm(.33)} ${rhythm(.33)} 0 0;
+      width: calc(600px + ${rhythm(2)});
+    }
   }
 `
 
@@ -91,5 +98,5 @@ const Title = styled.h2`
   left: ${rhythm(1)};
   bottom: 0;
   color: white;
-  max-width: 10em;
+  max-width: 10.5em;
 `
