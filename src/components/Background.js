@@ -63,8 +63,13 @@ export default props => (
       return (
         <article
           css={`
-            margin: ${rhythm(7)} auto -${rhythm(5)};
+            margin: ${rhythm(7)} auto 0;
             max-width: 600px;
+
+
+            > *:last-child {
+              margin-bottom: ${rhythm(7)};
+            }
           `}
         >
           {data.allPrismicBackground.edges.map(edge => {
