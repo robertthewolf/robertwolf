@@ -21,7 +21,7 @@ import Video from '../components/Video'
 
 import subtitles from '../components/Subtitles'
 
-import coverImage from '../img/video_cover.png'
+import facebook from '../img/facebook.png'
 
 export default class BlogIndex extends React.Component {
   state = {
@@ -50,16 +50,28 @@ export default class BlogIndex extends React.Component {
     scrollToElement(ReactDOM.findDOMNode(event.target), {
       offset: 0,
       ease: 'in-out-quad',
-      duration: 1000
-  })
+      duration: 1000,
+    })
   }
 
   render() {
     return (
-      <div css={`@media screen and (min-width: 600px) {
-        padding-top: ${rhythm(2)};
-      }`}>
-        <Contact/>
+      <div
+        css={`
+          @media screen and (min-width: 600px) {
+            padding-top: ${rhythm(2)};
+          }
+        `}
+      >
+        <Helmet>
+          <title>Robert Wolf - UX/UI Designer</title>
+          <meta property="og:url" content="https://rwolf.netlify.com" />
+          <meta property="og:type" content="" />
+          <meta property="og:title" content="Robert Wolf - UX/UI Designer" />
+          <meta property="og:description" content="I am currently looking for a 3-5 months internship, starting February 2019. Let me know how can I help you." />
+          <meta property="og:image" content={facebook} />
+        </Helmet>
+        <Contact />
         <Tagline>
           {!this.state.isVideoOpen &&
             this.state.videoTime === 0 && (
@@ -77,23 +89,23 @@ export default class BlogIndex extends React.Component {
                     height: 26px;
                     display: inline-block;
                     animation: dance 1s ease 1.5s infinite;
-                    margin-left: ${rhythm(.25)};
+                    margin-left: ${rhythm(0.25)};
 
                     @keyframes dance {
                       0% {
-                        transform: translateX(0%) 
+                        transform: translateX(0%);
                       }
                       10% {
-                        transform: translateX(25%)
+                        transform: translateX(25%);
                       }
                       20% {
-                        transform: translateX(0%)
+                        transform: translateX(0%);
                       }
                       30% {
-                        transform: translateX(12%)
+                        transform: translateX(12%);
                       }
                       40% {
-                        transform: translateX(0%)
+                        transform: translateX(0%);
                       }
                     }
                   }
@@ -129,7 +141,7 @@ export default class BlogIndex extends React.Component {
               <span>Background</span>
             </BackgroundButton>
           </Plx>
-            <Background />
+          <Background />
         </VideoOffset>
       </div>
     )
@@ -173,7 +185,7 @@ const parallaxButton = [
     properties: [
       {
         startValue: 0.8,
-        endValue: .4,
+        endValue: 0.4,
         property: 'opacity',
       },
       {

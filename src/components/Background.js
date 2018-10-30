@@ -112,6 +112,7 @@ export default props => (
                   <p
                     css={`
                       margin-top: ${rhythm(0.5)};
+                      color: white;
                     `}
                     dangerouslySetInnerHTML={{
                       __html: edge.node.data.description.html,
