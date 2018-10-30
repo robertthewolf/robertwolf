@@ -13,9 +13,10 @@ export default props => {
         margin: rhythm(0.5),
         padding: rhythm(0.75),
 
-        fontWeight: 'bold',
+        fontWeight: 200,
         textTransform: 'uppercase',
-        fontSize: rhythm(0.66),
+        fontSize: rhythm(0.66
+          ),
         lineHeight: '1rem',
       }}
     >

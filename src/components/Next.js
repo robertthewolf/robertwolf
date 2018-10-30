@@ -20,6 +20,7 @@ export default props => (
         fontSize: rhythm(0.66),
         lineHeight: '1rem',
         marginRight: rhythm(0.33),
+        fontWeight: 200,
       }}
     >
       next
