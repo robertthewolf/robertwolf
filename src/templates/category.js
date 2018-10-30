@@ -49,8 +49,20 @@ export default class PostTemplate extends React.Component {
           pose={this.state.isOpen ? 'open' : 'closed'}
           css={`
             @media screen and (min-width: 600px) {
-              display: flex;
-              justify-content: center;
+              display: grid;
+              grid-template-columns: 1fr .5fr 1fr;
+              grid-auto-flow: row dense;
+
+              > *:nth-of-type(1) {
+                grid-column: 1 / 3;
+              }
+
+              > *:nth-of-type(3) {
+                grid-column: 2 / 4;
+              }
+            }
+            @media screen and (min-width: 1000px) {
+              margin: 0 10vw;
             }
           `}
         >

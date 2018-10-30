@@ -7,24 +7,27 @@ import { rhythm } from '../utils/typography'
 const Box = posed.div({
   closed: {
     scale: 1,
+    opacity: .7,
+    y: 0,
   },
   open: {
     scale: 1.33,
-    marginTop: 0,
-    marginBottom: 200,
+    y: 100,
+    opacity: 1,
     marginRight: 'auto',
   },
 })
 
 export default props => (
   <Plx
+    freeze={props.open}
     parallaxData={[
       {
         start: 0,
         end: 300,
         properties: [
           {
-            startValue: 0.5,
+            startValue: 1,
             endValue: 0,
             property: 'opacity',
           },
@@ -41,8 +44,8 @@ export default props => (
       pose={props.open ? 'open' : 'closed'}
       css={`
       width: 75vw;
-      height: ${rhythm(8)};
-      margin-top: -${rhythm(4)};
+      // height: ${rhythm(8)};
+      margin-top: ${rhythm(4)};
       margin-bottom: -${rhythm(2)};
       margin-left: auto;
       transform-origin: right top;
@@ -53,12 +56,20 @@ export default props => (
       background-size: ${props.size ? props.size : ''};
       background-repeat: no-repeat;
 
+      position: relative;
+
+      $:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        padding-bottom: 50%;
+      }
+
       @media screen and (min-width: 600px) {
         width: 50vw;
         margin-left: 16.6vw;
-        margin-top: -${rhythm(6)}; 
-        height: ${rhythm(12)};
         transform-origin: left top;
+        margin-bottom: -${rhythm(6)};
       }
       `}
     >

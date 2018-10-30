@@ -18,13 +18,20 @@ export default props => {
                 text-align: right;
                 font-size: 1.125rem;
                 padding-right: 2rem;
+                // color: #dddddd;
+                // font-weight: 200;
           }`}>{props.data.primary.heading.text}</h2>
       <div
         dangerouslySetInnerHTML={{ __html: props.data.primary.text.html }}
         css={`
           em {
-            font-size: ${rhythm(0.75)};
-            line-height: ${rhythm(1)};
+            font-size: ${rhythm(1.125)};
+            line-height: ${rhythm(1.5)};
+            font-weight: 200;
+          }
+
+          b, strong {
+            color: #dddddd;
           }
         `}
       />

@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Overdrive from 'react-overdrive'
+import posed from 'react-pose'
 
 import Plx from 'react-plx'
 
@@ -47,35 +48,77 @@ export default class BlogIndex extends React.Component {
     return (
       <div>
         <Contact />
-        {!this.state.isVideoOpen && this.state.videoTime === 0 && (
-          <Tagline>
-            Hi! I've got
-            <br /> something
-            <br /> for you <button onClick={this.openVideo}>▶</button>
-          </Tagline>
-        )}
-        {this.state.videoTime !== 0 && 
-          <Tagline>
-            {subtitles(this.state.videoTime)}
-          </Tagline>
-        }
+        <Tagline>
+          {!this.state.isVideoOpen &&
+            this.state.videoTime === 0 && (
+              <button
+                onClick={this.openVideo}
+                css={`
+                  text-transform: uppercase;
+                  text-align: left;
+                  cursor: pointer;
+
+                  &::after {
+                    content: '';
+                    background-image: url("data:image/svg+xml,%3Csvg width='25' height='26' viewBox='0 0 25 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.59184 0L0 26L25 13.2549L4.59184 0Z' fill='white'/%3E%3C/svg%3E%0A");
+                    width: 25px;
+                    height: 26px;
+                    display: inline-block;
+                    animation: dance 1s ease 1.5s infinite;
+                    margin-left: ${rhythm(.25)};
+
+                    @keyframes dance {
+                      0% {
+                        transform: translateX(0%) 
+                      }
+                      10% {
+                        transform: translateX(25%)
+                      }
+                      20% {
+                        transform: translateX(0%)
+                      }
+                      30% {
+                        transform: translateX(12%)
+                      }
+                      40% {
+                        transform: translateX(0%)
+                      }
+                    }
+                  }
+                `}
+              >
+                Hi! I've got
+                <br />
+                something
+                <br />
+                for you
+              </button>
+            )}
+
+          {this.state.videoTime !== 0 && (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: subtitles(this.state.videoTime),
+              }}
+            />
+          )}
+        </Tagline>
         <Cover open={this.state.isVideoOpen}>
           <Video
             open={this.state.isVideoOpen}
+            time={this.state.videoTime}
             timeUpdate={this.handleTimeUpdate}
           />
         </Cover>
-
-        <Skills isOpen={this.state.isOpen} />
-        <Plx parallaxData={parallaxButton}>
-          <BackgroundButton>
-            <span>Background</span>
-          </BackgroundButton>
-        </Plx>
-
-        <Plx className="parallaxBackground" parallaxData={parallaxBackground}>
-          <Background />
-        </Plx>
+        <VideoOffset pose={this.state.isVideoOpen ? 'open' : 'closed'}>
+          <Skills isOpen={this.state.isOpen} />
+          <Plx parallaxData={parallaxButton}>
+            <BackgroundButton>
+              <span>Background</span>
+            </BackgroundButton>
+          </Plx>
+            <Background />
+        </VideoOffset>
       </div>
     )
   }
@@ -85,6 +128,7 @@ const BackgroundButton = styled.button`
   width: 100%;
   text-align: center;
   text-transform: uppercase;
+  font-weight: bold;
 
   span {
     background: linear-gradient(#666, #ccc);
@@ -98,34 +142,36 @@ const BackgroundButton = styled.button`
   }
 `
 
+const VideoOffset = posed.div({
+  closed: {
+    y: 0,
+    opacity: 1,
+  },
+  open: {
+    y: 400,
+    opacity: 0.3,
+  },
+})
+
 const parallaxButton = [
   {
     start: 0,
-    end: 200,
+    end: 300,
     properties: [
       {
-        startValue: 1,
-        endValue: 0,
+        startValue: 0.8,
+        endValue: .4,
         property: 'opacity',
       },
-    ],
-  },
-]
-
-const parallaxBackground = [
-  {
-    start: 50,
-    end: 500,
-    properties: [
       {
         startValue: 0,
-        endValue: 1,
-        property: 'opacity',
+        endValue: 120,
+        property: 'translateY',
       },
       {
-        startValue: -50,
-        endValue: 0,
-        property: 'translateY',
+        startValue: 1,
+        endValue: 3,
+        property: 'scale',
       },
     ],
   },

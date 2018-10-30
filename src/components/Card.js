@@ -59,7 +59,7 @@ export default props => {
 const Card = styled.section`
   &.rounded {
     margin: ${rhythm(1)};
-    border-radius: 0.5rem;
+    border-radius: ${rhythm(.33)};
 
     img {
       border-radius: 0.5rem;
@@ -70,12 +70,11 @@ const Card = styled.section`
   position: relative;
 
   @media screen and (min-width: 600px) {
-    width: 40vw;
     height: ${rhythm(14)};
 
     &.fullwidth {
+      border-radius: ${rhythm(.33)};
       margin: ${rhythm(2)} auto 0;
-      border-radius: ${rhythm(.33)} ${rhythm(.33)} 0 0;
       width: calc(600px + ${rhythm(2)});
     }
   }

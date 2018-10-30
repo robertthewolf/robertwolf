@@ -12,6 +12,8 @@ import { Animation } from '../components/CSS'
 import Card from '../components/Card'
 import Section from '../components/Section'
 import Gallery from '../components/Gallery'
+import CTA from '../components/CTA'
+import Next from '../components/Next'
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -28,7 +30,7 @@ export default class PostTemplate extends React.Component {
               properties: [
                 {
                   startValue: 1,
-                  endValue: 0,
+                  endValue: -1,
                   property: 'opacity',
                 },
                 {
@@ -56,17 +58,17 @@ export default class PostTemplate extends React.Component {
         >
           <article
             css={`
-              background-color: white;
-              color: black;
+              color: #838383;
               padding-bottom: ${rhythm(2)};
+              margin-top: ${rhythm(2)};
 
               *::selection {
-                background: rgba(0, 0, 0, 0.1);
-                color: rgba(0, 0, 0, 0.8);
+                background: transparent;
+                color: #FDA629;
               }
 
               @media screen and (min-width: 800px) {
-                margin: 0 ${rhythm(2)};
+                // margin: 0 ${rhythm(2)};
               }
             `}
           >
@@ -79,24 +81,53 @@ export default class PostTemplate extends React.Component {
             >
               <div
                 css={`
-                  background: linear-gradient(
-                    180deg,
-                    #ebebeb 0%,
-                    rgba(244, 244, 244, 0) 100%
-                  );
+                  // background: linear-gradient(
+                  //   180deg,
+                  //   #ebebeb 0%,
+                  //   rgba(244, 244, 244, 0) 100%
+                  // );
                   padding: ${rhythm(1)};
                 `}
               />
-              {post.data.body.map(slice => {
-                if (slice.slice_type === 'section') {
-                  return <Section data={slice} />
-                } else if (slice.slice_type === 'gallery')
-                  return <Gallery data={slice} />
-              })}
+              {post.data.body &&
+                post.data.body.map(slice => {
+                  if (slice.slice_type === 'section') {
+                    return <Section data={slice} />
+                  } else if (slice.slice_type === 'gallery')
+                    return <Gallery data={slice} />
+                })}
+              <CTA />
             </Animation>
           </article>
         </Animation>
-        <BackButton link={'/' + post.data.category.slug}>back</BackButton>
+        <div
+          css={`
+            display: flex;
+            @media screen and (min-width: 600px) {
+              width: 80vw;
+              margin: 0 auto;
+            }
+          `}
+        >
+          <BackButton link={'/' + post.data.category.slug}>back</BackButton>
+          {this.props.data.allPrismicPost.edges
+            .filter(edge => edge.node.id === post.id)
+            .map(edge => {
+
+              const next =
+                edge.next !== null
+                  ? edge.next
+                  : this.props.data.allPrismicPost.edges[0].node // first node
+              const slug = next.slugs[0]
+              const category = this.props.data.allPrismicCategory.edges.filter(
+                cat => cat.node.prismicId === next.data.category.id
+              )[0].node.slugs[0]
+
+              return (
+                <Next key={slug} name={slug} link={`/${category}/${slug}`} />
+              )
+            })}
+        </div>
       </div>
     )
   }
@@ -104,6 +135,37 @@ export default class PostTemplate extends React.Component {
 
 export const pageQuery = graphql`
   query PostQuery($id: String!) {
+    allPrismicPost {
+      edges {
+        node {
+          id
+          slugs
+          data {
+            category {
+              id
+            }
+          }
+        }
+        next {
+          id
+          slugs
+          data {
+            category {
+              id
+            }
+          }
+        }
+      }
+    }
+    allPrismicCategory {
+      edges {
+        node {
+          prismicId
+          slugs
+        }
+      }
+    }
+
     prismicPost(id: { eq: $id }) {
       id
       slugs

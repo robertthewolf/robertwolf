@@ -1,28 +1,25 @@
 import React from 'react'
-import styled from 'react-emotion'
 
 import { rhythm } from '../utils/typography'
 
-export default (props) => {
+export default props => {
   return (
-    <Button primary={props.primary} secondary={props.secondary}>
+    <a
+      href={props.to}
+      css={`
+        outline: none;
+        cursor: pointer;
+        padding: ${rhythm(0.33)} ${rhythm(0.5)};
+        border-radius: 5px;
+        font-weight: bold;
+
+        border: 2px solid white;
+        box-sizing: border-box;
+
+        margin: ${rhythm(0.5)} 0;
+      `}
+    >
       {props.children}
-    </Button>
+    </a>
   )
 }
-
-const Button = styled.button`
-outline: none;
-cursor: pointer;
-padding: ${rhythm(.25)} ${rhythm(.75)};
-border-radius: 5px;
-font-weight: bold;
-
-border: 2px solid white;
-box-sizing: border-box;
-
-margin:  ${rhythm(.25)};
-
-// secondary
-${props => (props.secondary ? "background: transparent; color: white" : '')}
-`

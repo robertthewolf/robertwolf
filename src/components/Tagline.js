@@ -29,17 +29,19 @@ export default props => (
     css={`
       position: relative;
       z-index: 1;
-
+      height: 0;
     `}
   >
     <h1
       css={`
+        font-family: 'PlainBlack-Italic', sans-serif;
+        text-transform: uppercase;
         margin-left: ${rhythm(1)};
         padding: ${rhythm(1.5)} ${rhythm(3 / 4)};
         font-size: ${rhythm(1.5)};
         line-height: 1em;
         font-weight: bold;
-        max-width: 7em;
+        max-width: 8em;
         overflow-wrap: normal;
 
         @media screen and (min-width: 600px) {
