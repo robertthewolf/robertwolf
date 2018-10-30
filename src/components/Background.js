@@ -71,13 +71,14 @@ export default props => (
             const date = new Date(edge.node.data.date)
 
             return (
-              <Flip bottom>
+              
                 <section
                   key={edge.node.data.name.text}
                   className={edge.node.data.type}
                   css={`
                     margin: calc(20vw + ${rhythm(5)}) 0 ;
                     padding: ${rhythm(0.75)};
+                    color: white;
                   `}
                 >
                   <time
@@ -119,7 +120,7 @@ export default props => (
                     </Button>
                   )}
                 </section>
-              </Flip>
+              
             )
           })}
         </article>

@@ -8,6 +8,7 @@ export default props => {
       css={`
         max-width: 600px;
         margin: 0 auto;
+        padding: 0 ${rhythm(1)};
       `}
     >
       <h2 css={`

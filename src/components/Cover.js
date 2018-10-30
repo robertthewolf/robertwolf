@@ -44,7 +44,7 @@ export default props => (
       pose={props.open ? 'open' : 'closed'}
       css={`
       width: 75vw;
-      // height: ${rhythm(8)};
+      height: 42vw;
       margin-top: ${rhythm(4)};
       margin-bottom: -${rhythm(2)};
       margin-left: auto;
@@ -56,17 +56,12 @@ export default props => (
       background-size: ${props.size ? props.size : ''};
       background-repeat: no-repeat;
 
-      position: relative;
 
-      $:after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        padding-bottom: 50%;
-      }
+
 
       @media screen and (min-width: 600px) {
         width: 50vw;
+        height: 28vw;
         margin-left: 16.6vw;
         transform-origin: left top;
         margin-bottom: -${rhythm(6)};
