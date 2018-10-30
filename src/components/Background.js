@@ -75,9 +75,8 @@ export default props => (
             const date = new Date(edge.node.data.date)
 
             return (
-              <Flip bottom>
+              <Flip bottom key={edge.node.data.name.text}>
                 <section
-                  key={edge.node.data.name.text}
                   className={edge.node.data.type}
                   css={`
                     margin: calc(20vw + ${rhythm(5)}) 0;

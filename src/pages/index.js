@@ -1,9 +1,11 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import styled from 'react-emotion'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import Overdrive from 'react-overdrive'
 import posed from 'react-pose'
+
+import scrollToElement from 'scroll-to-element'
 
 import Plx from 'react-plx'
 
@@ -42,6 +44,14 @@ export default class BlogIndex extends React.Component {
     if (e.target.duration - time < 1) {
       this.setState({ isVideoOpen: false })
     }
+  }
+
+  ShowBackground = event => {
+    scrollToElement(ReactDOM.findDOMNode(event.target), {
+      offset: 0,
+      ease: 'in-out-quad',
+      duration: 1000
+  })
   }
 
   render() {
@@ -113,7 +123,7 @@ export default class BlogIndex extends React.Component {
         <VideoOffset pose={this.state.isVideoOpen ? 'open' : 'closed'}>
           <Skills isOpen={this.state.isOpen} />
           <Plx parallaxData={parallaxButton}>
-            <BackgroundButton>
+            <BackgroundButton onClick={this.ShowBackground}>
               <span>Background</span>
             </BackgroundButton>
           </Plx>
@@ -129,6 +139,7 @@ const BackgroundButton = styled.button`
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  cursor: pointer;
 
   span {
     background: linear-gradient(#666, #ccc);
