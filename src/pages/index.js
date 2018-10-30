@@ -56,8 +56,10 @@ export default class BlogIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        <Contact />
+      <div css={`@media screen and (min-width: 600px) {
+        padding-top: ${rhythm(2)};
+      }`}>
+        <Contact/>
         <Tagline>
           {!this.state.isVideoOpen &&
             this.state.videoTime === 0 && (
@@ -181,7 +183,7 @@ const parallaxButton = [
       },
       {
         startValue: 1,
-        endValue: 3,
+        endValue: 2.5,
         property: 'scale',
       },
     ],

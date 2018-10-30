@@ -14,6 +14,7 @@ import Section from '../components/Section'
 import Gallery from '../components/Gallery'
 import CTA from '../components/CTA'
 import Next from '../components/Next'
+import Headroom from '../components/Headroom'
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -22,6 +23,7 @@ export default class PostTemplate extends React.Component {
 
     return (
       <div>
+        <Headroom link={'/' + post.data.category.slug} />
         <Plx
           parallaxData={[
             {
@@ -92,9 +94,9 @@ export default class PostTemplate extends React.Component {
               {post.data.body &&
                 post.data.body.map(slice => {
                   if (slice.slice_type === 'section') {
-                    return <Section data={slice} />
+                    return <Section key={slice.id} data={slice} />
                   } else if (slice.slice_type === 'gallery')
-                    return <Gallery data={slice} />
+                    return <Gallery key={slice.id} data={slice} />
                 })}
               <CTA />
             </Animation>
@@ -206,6 +208,7 @@ export const pageQuery = graphql`
 
         body {
           ... on PrismicPostBodySection {
+            id
             slice_type
             primary {
               heading {
@@ -217,6 +220,7 @@ export const pageQuery = graphql`
             }
           }
           ... on PrismicPostBodyGallery {
+            id
             slice_type
             items {
               image {

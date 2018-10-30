@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import styled from 'react-emotion'
-import { rhythm, scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 import posed from 'react-pose'
 
 const Parent = posed.div({
@@ -25,6 +25,7 @@ import Cover from '../components/Cover'
 import Tagline from '../components/Tagline'
 import Card from '../components/Card'
 import Next from '../components/Next'
+import Headroom from '../components/Headroom'
 
 export default class PostTemplate extends React.Component {
   state = { isOpen: false }
@@ -42,6 +43,7 @@ export default class PostTemplate extends React.Component {
 
     return (
       <div>
+        <Headroom link="/" />
         <Contact />
         <Tagline>{category.data.tagline.text}</Tagline>
         <Cover image={category.data.icon.url} size="50% 50%" />
@@ -50,7 +52,7 @@ export default class PostTemplate extends React.Component {
           css={`
             @media screen and (min-width: 600px) {
               display: grid;
-              grid-template-columns: 1fr .5fr 1fr;
+              grid-template-columns: 1fr 0.5fr 1fr;
               grid-auto-flow: row dense;
 
               > *:nth-of-type(1) {
