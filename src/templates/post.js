@@ -107,7 +107,7 @@ export default class PostTemplate extends React.Component {
             display: flex;
             @media screen and (min-width: 600px) {
               width: 80vw;
-              margin: 0 auto;
+              margin: 0 auto ${rhythm(1)};
             }
           `}
         >
