@@ -33,6 +33,7 @@ export default props => (
 
         @media screen and (min-width: 600px) {
           border-radius:  ${rhythm(0.33)};
+          margin-right: ${rhythm(1)}
         }
       `}
     >

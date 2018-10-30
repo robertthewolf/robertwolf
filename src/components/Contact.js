@@ -36,6 +36,7 @@ export default class Contact extends React.Component {
             padding: ${rhythm(3 / 4)};
             font-style: italic;
             text-align: right;
+            color: white;
 
             a {
               color: rgba(255, 255, 255, 0.9);
