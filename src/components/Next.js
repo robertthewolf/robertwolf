@@ -3,42 +3,34 @@ import Link from 'gatsby-link'
 
 import { rhythm } from '../utils/typography'
 
+import Button from './Button'
+
 export default props => (
   <Link
     to={props.link}
-    style={{
-      marginLeft: 'auto',
-      marginTop: rhythm(0.5),
-      marginBottom: rhythm(0.5),
-      display: 'flex',
-      alignItems: 'center',
-    }}
+    css={`
+    margin-left: auto;
+    margin-top: ${rhythm(.5)};
+    margin-right: ${rhythm(.5)};
+    display: flex;
+    align-items: center;
+
+    @media screen and (min-width: 600px) {
+      margin-right: ${rhythm(1)};
+    }`}
   >
     <div
       style={{
         textTransform: 'uppercase',
         fontSize: rhythm(0.66),
-        lineHeight: '1rem',
         marginRight: rhythm(0.33),
         fontWeight: 200,
       }}
     >
       next
     </div>
-    <div
-      css={`
-        font-weight: bold;
-        background-color: #4A4A4A;
-        border-radius: ${rhythm(0.33)} 0 0 ${rhythm(0.33)};
-        padding: ${rhythm(0.5)};
-
-        @media screen and (min-width: 600px) {
-          border-radius:  ${rhythm(0.33)};
-          margin-right: ${rhythm(1)}
-        }
-      `}
-    >
+      <Button>
       {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
-    </div>
+      </Button>
   </Link>
 )

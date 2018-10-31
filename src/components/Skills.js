@@ -63,7 +63,7 @@ export default props => (
               <Child
                 key={edge.node.prismicId}
                 css={`
-                  box-shadow: inset 0 0 ${rhythm(0.5)} rgba(0, 0, 0, 0.2);
+                  // box-shadow: inset 0 0 ${rhythm(0.5)} rgba(0, 0, 0, 0.2);
                   cursor: pointer;
                   width: calc(50% - ${rhythm(0.5)});
                   max-width: ${rhythm(9)};
@@ -113,11 +113,11 @@ export default props => (
                     src={edge.node.data.icon.url}
                     css={`
                       position: absolute;
-                      top: 50%;
+                      top: calc(50% - .5rem);
                       left: 50%;
                       transform: translate(-50%, -50%);
-                      width: 54px;
-                      height: 54px;
+                      width: 50%;
+                      // height: 54px;
                       display: block;
                     `}
                   />
@@ -132,6 +132,7 @@ export default props => (
                       color: white;
                       line-height: 1em;
                       margin: auto 0 0;
+                      text-transform: uppercase;
                     `}
                   >
                     {edge.node.data.name.text}

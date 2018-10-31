@@ -5,8 +5,10 @@ import { rhythm } from '../utils/typography'
 
 export default class Video extends React.Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open === true) {
-      this.videoRef.play()
+    if (nextProps.open === true && this.props.open === false) {
+      if (this.videoRef && this.videoRef.paused) {
+        this.videoRef.play()
+      } 
     }
   }
 
@@ -62,8 +64,8 @@ export default class Video extends React.Component {
             background: linear-gradient(-30deg, #fd66f1 0%, #4b0c49 100%);
             background-size: cover;
 
-            animation: slide 2s ease alternate infinite;
-            opacity: 0.3;
+            animation: slide 1s ease alternate infinite;
+            opacity: 0.5;
             transition: opacity 1s ease;
             pointer-events: none;
             &.hide {

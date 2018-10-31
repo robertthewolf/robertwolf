@@ -5,7 +5,7 @@ import { rhythm } from '../utils/typography'
 export default props => {
   return (
     <a
-      href={props.to}
+      href={props.to ? props.to : ''}
       css={`
         outline: none;
         cursor: pointer;
