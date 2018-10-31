@@ -175,8 +175,8 @@ const VideoOffset = posed.div({
     opacity: 1,
   },
   open: {
-    y: 400,
-    opacity: 0.3,
+    y: 450,
+    opacity: 0.6,
   },
 })
 
