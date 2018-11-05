@@ -24,7 +24,9 @@ export default props => (
   <StaticQuery
     query={graphql`
       query {
-        allPrismicCategory {
+        allPrismicCategory(
+          sort: {fields: [data___name___text], order: ASC},
+        )  {
           edges {
             node {
               prismicId

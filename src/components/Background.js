@@ -30,7 +30,7 @@ export default props => (
                   text
                 }
                 description {
-                  html
+                  text
                 }
                 cta {
                   text
@@ -114,10 +114,7 @@ export default props => (
                       margin-top: ${rhythm(0.5)};
                       color: white;
                     `}
-                    dangerouslySetInnerHTML={{
-                      __html: edge.node.data.description.html,
-                    }}
-                  />
+                  >{edge.node.data.description.text}</p>
                   {edge.node.data.cta.text !== null && (
                     <Button to={edge.node.data.link.url} color="black">
                       {edge.node.data.cta.text}
