@@ -8,7 +8,7 @@ import { rhythm, scale } from '../utils/typography'
 export default props => {
   return (
     <Card className={props.fullwidth ? 'fullwidth' : 'rounded'}>
-      {props.cover.localFile.childImageSharp !== null && (
+      {props.cover.localFile !== null && props.cover.localFile.childImageSharp !== null && (
         <Overdrive
           id={props.id + 'image'}
           css={{
@@ -27,7 +27,7 @@ export default props => {
           />
         </Overdrive>
       )}
-      {props.cover.localFile.childImageSharp === null && (
+      {props.cover.localFile !== null && props.cover.localFile.childImageSharp === null && (
         <Overdrive
           id={props.id + 'image'}
           css={{

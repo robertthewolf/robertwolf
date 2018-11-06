@@ -7,8 +7,8 @@ export default props => {
     <section
       css={`
         max-width: 600px;
-        margin:0 auto;
-        padding: 0 ${rhythm(1)};
+        margin: 0 auto;
+        padding: ${rhythm(2)} ${rhythm(1)} 0;
       `}
     >
       <h2 css={`

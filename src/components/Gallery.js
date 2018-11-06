@@ -17,20 +17,22 @@ export default props => {
             background-color: #1e1e1e;
             border-radius: ${rhythm(.33)};
             overflow: hidden;
+            padding-bottom: ${rhythm(2)}
 
             img {
               margin: 0;
+              width: 100%;
             }
           `}
         >
-          {item.image.localFile.childImageSharp !== null && (
+          {item.image.localFile !== null && item.image.localFile.childImageSharp !== null && (
             <Img
               sizes={item.image.localFile.childImageSharp.sizes}
               alt={item.image.alt}
             />
           )}
 
-          {item.image.localFile.childImageSharp === null && (
+          {item.image.localFile !== null && item.image.localFile.childImageSharp === null && (
             <img src={item.image.url} alt={item.image.alt} />
           )}
           <figcaption

@@ -31,7 +31,7 @@ export default class Video extends React.Component {
         ref={videoRef => (this.videoRef = videoRef)}
         onTimeUpdate={this.props.timeUpdate}
         controls={this.props.open}
-        poster={poster}
+        // poster={poster}
         // css={`background-color: #FFD368`}
         >
           <source
