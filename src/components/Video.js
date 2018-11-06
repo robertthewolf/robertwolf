@@ -3,6 +3,8 @@ import VideoCover from 'react-video-cover'
 
 import { rhythm } from '../utils/typography'
 
+// import poster from '../img/pineapple.svg'
+
 export default class Video extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.open === true && this.props.open === false) {
@@ -26,33 +28,17 @@ export default class Video extends React.Component {
         <video
         width="100%"
         height="100%"
-          ref={videoRef => (this.videoRef = videoRef)}
-          onTimeUpdate={this.props.timeUpdate}
-          controls={this.props.open}
+        ref={videoRef => (this.videoRef = videoRef)}
+        onTimeUpdate={this.props.timeUpdate}
+        controls={this.props.open}
+        poster={poster}
+        // css={`background-color: #FFD368`}
         >
           <source
             src="http://res.cloudinary.com/duee6zdk4/video/upload/v1540786908/robertwolf.mp4"
             type="video/mp4"
           />
         </video>
-        {/* <VideoCover
-          videoOptions={{
-            src:
-              'http://res.cloudinary.com/duee6zdk4/video/upload/v1540786908/robertwolf.mp4',
-            ref: videoRef => {
-              this.videoRef = videoRef
-            },
-            onClick: () => {
-              if (this.videoRef && this.videoRef.paused) {
-                this.videoRef.play()
-              } else if (this.videoRef) {
-                this.videoRef.pause()
-              }
-            },
-            onTimeUpdate: this.props.timeUpdate,
-            title: 'play/pause',
-          }}
-        /> */}
         <div
           className={this.props.open ? 'hide' : 'show'}
           css={`
