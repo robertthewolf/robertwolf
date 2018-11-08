@@ -47,11 +47,15 @@ export default class Video extends React.Component {
             left: 0;
             width: 200%;
             height: 100%;
-            background: linear-gradient(-30deg, #fd66f1 0%, #4b0c49 100%);
+            background:
+                linear-gradient(#4b0c49, transparent),
+                linear-gradient(to top left, #FDA629, transparent),
+                linear-gradient(to top right, #fd66f1, transparent);
+            background-blend-mode: screen;
             background-size: cover;
 
             animation: slide 1s ease alternate infinite;
-            opacity: 0.5;
+            opacity: 0.6;
             transition: opacity 1s ease;
             pointer-events: none;
             &.hide {

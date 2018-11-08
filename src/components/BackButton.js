@@ -7,20 +7,34 @@ export default props => {
   return (
     <Link
       to={props.link}
-      // onClick={() => window.history.back()}
-      css={{
-        display: 'block',
-        margin: rhythm(0.5),
-        padding: rhythm(0.75),
+      css={`
+      display: block;
+      margin: ${rhythm(0.5)};
+      padding: ${rhythm(0.75)};
+      font-weight: 200;
+      text-transform: uppercase;
+      font-size: ${rhythm(0.66)};
+      line-height: 1rem;
+      transition: transform .15s ease-in;
 
-        fontWeight: 200,
-        textTransform: 'uppercase',
-        fontSize: rhythm(0.66
-          ),
-        lineHeight: '1rem',
-      }}
+      &::before {
+        content: '–';
+        margin-right: .33em;
+        display: inline-block;
+        transition: transform .15s ease-in;
+        transform-origin: right center;
+      }
+
+      &:hover {
+        transform: translateX(.5em);
+
+        &::before {
+          transform: scaleX(2);
+        }
+      }
+      `}
     >
-      – Back
+      Back
     </Link>
   )
 }

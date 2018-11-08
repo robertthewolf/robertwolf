@@ -8,10 +8,10 @@ import posed from 'react-pose'
 const Parent = posed.div({
   open: {
     x: '0%',
-    delayChildren: 120,
+    delayChildren: 100,
     staggerChildren: 150,
   },
-  closed: { x: '-100%', delay: 0 },
+  closed: { x: '100%', delay: 0 },
 })
 
 const Child = posed.div({
@@ -127,11 +127,18 @@ export const pageQuery = graphql`
       }
     }
 
-    allPrismicCategory {
+    allPrismicCategory(
+      sort: {fields: [data___name___text], order: ASC},
+    ) {
       edges {
         node {
           id
           slugs
+          data {
+            name {
+              text
+            }
+          }
         }
         next {
           id

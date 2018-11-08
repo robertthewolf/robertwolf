@@ -17,6 +17,13 @@ export default props => {
         box-sizing: border-box;
 
         margin: ${rhythm(0.5)} 0;
+        
+        transition: all .15s ease-in;
+
+        &:hover {
+          background-color: white;
+          color: black;
+        }
       `}
     >
       {props.children}

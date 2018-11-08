@@ -26,7 +26,7 @@ export default props => (
       query {
         allPrismicCategory(
           sort: {fields: [data___name___text], order: ASC},
-        )  {
+        ) {
           edges {
             node {
               prismicId
