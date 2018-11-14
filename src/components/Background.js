@@ -162,8 +162,7 @@ export default props => (
 
                           width: 100vw;
                           max-width: 800px;
-                          height: 50vw;
-                          max-height: calc(20vw + ${rhythm(7)});
+                          height: calc(10vw + ${rhythm(11)});
                           overflow: hidden;
                           opacity: 0.5;
 

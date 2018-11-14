@@ -16,7 +16,7 @@ export default props => {
               background-color: #1e1e1e;
               border-radius: ${rhythm(0.33)};
               overflow: hidden;
-              padding-bottom: ${rhythm(2)};
+              padding: 0;
             `}
           >
             {item.image.localFile !== null &&
