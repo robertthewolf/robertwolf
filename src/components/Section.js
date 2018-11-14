@@ -12,7 +12,7 @@ export default props => {
       `}
     >
       <h2 css={`
-          @media screen and (min-width: 600px) {
+          @media screen and (min-width: 900px) {
                 height: 0;
                 margin-bottom: 0;
                 transform: translate(-100%, -${rhythm(.25)});
