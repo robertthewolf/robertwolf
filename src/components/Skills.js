@@ -77,6 +77,21 @@ export default props => (
                     content: '';
                     display: block;
                     padding-bottom: 100%;
+                    background: white;
+                    border-radius: ${rhythm(0.33)};
+                    opacity: 0;
+                    transition: opacity .3s ease-out;
+                    pointer-events: none;
+                  }
+
+                  &:hover {
+                    transform: scale(1.02) !important;
+                    transform-origin: center center;
+                    
+                    &:after {
+                      opacity: .05;
+                      transition: none;
+                    }
                   }
 
                   &:nth-of-type(1) {

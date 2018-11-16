@@ -41,7 +41,7 @@ export default class BlogIndex extends React.Component {
     const time = Math.floor(e.target.currentTime * 10) / 10
     this.setState({ videoTime: time })
 
-    if (e.target.duration - time < 1) {
+    if (e.target.duration - time < 5) {
       this.setState({ isVideoOpen: false })
     }
   }
