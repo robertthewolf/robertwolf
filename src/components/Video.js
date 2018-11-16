@@ -35,7 +35,7 @@ export default class Video extends React.Component {
         // css={`background-color: #FFD368`}
         >
           <source
-            src="https://res.cloudinary.com/dpgqkw9uc/video/upload/v1542220563/robertwolf.mp4"
+            src="https://res.cloudinary.com/dpgqkw9uc/video/upload/v1542326932/robertwolf.mp4"
             type="video/mp4"
           />
         </video>
