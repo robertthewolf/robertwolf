@@ -8,7 +8,7 @@ import posed from 'react-pose'
 const Parent = posed.div({
   open: {
     x: '0%',
-    delayChildren: 100,
+    delayChildren: 50,
     staggerChildren: 150,
   },
   closed: { x: '100%', delay: 0 },
