@@ -1,10 +1,7 @@
-# gatsby-starter-blog
-Gatsby starter for creating a blog
+# Porfolio 
+This project was developed with React and Gatbsy.js.
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
 
-`gatsby new gatsby-blog https://github.com/gatsbyjs/gatsby-starter-blog`
 
-## Running in development
-`gatsby develop`
-# robertwolf
+## The JAMStack
+Following the JAMStack architecture, Gatsby takes data from Prismic.io CMS and turns them into static web pages that can be served over CDN.
