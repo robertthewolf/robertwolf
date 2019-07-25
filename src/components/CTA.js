@@ -14,8 +14,8 @@ export default () => {
         color: #dddddd;
         text-align: center;
         `}>
-            <h2 css={`color: #eeeeee;`}>Are you looking for an intern?</h2>
-            <p>I am currently looking for a 3-5 months internship, starting February 2019. Let me know how can I help you.</p>
+            <h2 css={`color: #eeeeee;`}>Are you interested?</h2>
+            <p>I am currently looking for a student job, starting August 2019. Let me know how can I help you.</p>
             <Button to="mailto:work@robertwolf.cz">
                 Let's talk
             </Button>
